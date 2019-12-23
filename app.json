@@ -1,0 +1,23 @@
+{
+  "addons": [
+    "heroku-redis",
+    "papertrail"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "env": {
+    "SIXPACK_CONFIG_SECRET": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "required": true,
+      "generator": "secret"
+    },
+    "SIXPACK_APP": {
+      "description": "Which part of the app to run ('server' which is the API, or 'web' which is the dashboard)",
+      "required": true,
+      "default": "server"
+    }
+  }
+}
