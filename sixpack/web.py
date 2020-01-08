@@ -22,6 +22,7 @@ app = Flask(__name__)
 if cfg.get('proxy_fix', False):
     app.wsgi_app = ProxyFix(app.wsgi_app)
 app.config['CSRF_DISABLE'] = cfg.get('csrf_disable', False)
+app.config['ASSETS_DEBUG'] = cfg.get('assets_debug', False)
 
 csrf = SeaSurf(app)
 cors = CORS(app)
