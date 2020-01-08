@@ -42,6 +42,7 @@ else:
         'metrics': to_bool(os.environ.get('SIXPACK_METRICS', 'False')),
         'statsd_url': os.environ.get('STATSD_URL', 'udp://localhost:8125/sixpack'),
         'proxy_fix': to_bool(os.environ.get('SIXPACK_PROXY_FIX', 'False')),
+        'assets_debug': to_bool(os.environ.get('SIXPACK_ASSETS_DEBUG', 'False')),
         'cors_origin': os.environ.get("SIXPACK_CORS_ORIGIN", "*"),
         'cors_headers': os.environ.get("SIXPACK_CORS_HEADERS", "Origin, ..."),
         'cors_credentials': os.environ.get("SIXPACK_CORS_CREDENTIALS", "true"),
