@@ -2,6 +2,7 @@ import yaml
 import os
 
 from utils import to_bool
+from urlparse import urlparse
 
 config_path = os.environ.get('SIXPACK_CONFIG', None)
 if config_path:
@@ -13,6 +14,12 @@ if config_path:
     except yaml.YAMLError, exc:
         raise RuntimeError('Error in configuration file: {0}'.format(str(exc)))
 else:
+    if 'REDIS_URL' in os.environ:
+        redis_url = urlparse(os.environ.get('REDIS_URL'))
+        os.environ.update(SIXPACK_CONFIG_REDIS_HOST=redis_url.hostname,
+                          SIXPACK_CONFIG_REDIS_PORT=str(redis_url.port),
+                          SIXPACK_CONFIG_REDIS_PASSWORD=redis_url.password,
+                          SIXPACK_CONFIG_REDIS_DB='0')
     CONFIG = {
         'enabled': to_bool(os.environ.get('SIXPACK_CONFIG_ENABLED', 'True')),
         'redis_port': int(os.environ.get('SIXPACK_CONFIG_REDIS_PORT', '6379')),
